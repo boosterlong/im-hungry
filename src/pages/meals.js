@@ -12,11 +12,14 @@ import * as qs from 'query-string';
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-var loaded = false
+var loaded = true
+
+const isBrowser = typeof window !== "undefined"
+if (isBrowser) {
+    loaded = false
+}
 
 export default function MealsPage() {
-
-  const parsed = qs.parse(window.location.search);
 
   const [listOutput, setListOutput] = useState([]);
 
@@ -25,6 +28,7 @@ export default function MealsPage() {
   async function getMealList() {
     if (loaded == false) {
       try {
+      const parsed = qs.parse(window.location.search);
       loaded = true
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${parsed.category}`);
       const items = await response.json();
