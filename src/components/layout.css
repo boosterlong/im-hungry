@@ -50,6 +50,25 @@ progress {
 template {
   display: none;
 }
+
+.main-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.category-selections {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: fit-content;
+}
+
+.recipe-card {
+  width: 20vw
+}
+
+
 a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
@@ -593,5 +612,16 @@ pre tt:after {
 @media only screen and (max-width: 480px) {
   html {
     font-size: 100%;
+
   }
+  .main-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap:wrap;
+  }
+
+  .recipe-card {
+    width:auto;
+  }
+
 }
