@@ -3,7 +3,7 @@ import heroImage from '../images/default-monochrome.svg'
 import arrow from '../images/right-arrow-button.svg'
 
 import Seo from "../components/seo"
-import "./layout.css"
+import "../components/layout.css"
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
