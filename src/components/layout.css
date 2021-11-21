@@ -54,20 +54,37 @@ template {
 .main-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .category-selections {
   display: flex;
-  justify-content: space-between;
-  margin: auto;
-  width: fit-content;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+a.source {
+  font-size: smaller;
+  text-decoration: none;
+  color: rgb(73, 73, 73);
 }
 
 .recipe-card {
   width: 20vw
 }
 
+.ingredient {
+  font-size: 0.8rem;
+  line-height: 0.5rem;
+}
+
+.ingredient:nth-child(2n) { 
+  background: #85858536; 
+}
 
 a {
   background-color: transparent;

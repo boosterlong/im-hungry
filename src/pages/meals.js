@@ -14,6 +14,7 @@ import Seo from "../components/seo"
 
 var loaded = true
 
+//This is to stop the server side rendering from trying to populate the meal list and erroring
 const isBrowser = typeof window !== "undefined"
 if (isBrowser) {
     loaded = false
@@ -28,14 +29,17 @@ export default function MealsPage() {
   async function getMealList() {
     if (loaded == false) {
       try {
-      const parsed = qs.parse(window.location.search);
-      loaded = true
-      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${parsed.category}`);
-      const items = await response.json();
-      for (let i = 0; i < items.meals.length; i++) {
-        mealList.push([items.meals[i].strMeal, items.meals[i].idMeal, items.meals[i].strMealThumb])
-      }
-      setListOutput(mealList)
+          //Grabs query string from URL
+          const parsed = qs.parse(window.location.search);
+          //Stops unwanted rerendering
+          loaded = true
+          //Fetch data from API
+          const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${parsed.category}`);
+          const items = await response.json();
+          for (let i = 0; i < items.meals.length; i++) {
+            mealList.push([items.meals[i].strMeal, items.meals[i].idMeal, items.meals[i].strMealThumb])
+          }
+          setListOutput(mealList)
       } catch {
         alert('Sorry, we couldn\'t load any recipes for that category.')
         return
@@ -61,11 +65,13 @@ export default function MealsPage() {
         />
         <CardContent>
           <Typography gutterBottom variant="h6">
-            {item[0]}
+            <p class="capitalize">
+              {item[0]}
+            </p>
           </Typography>
         </CardContent>
         <CardActions>
-          <Button href={`/recipe?index=${item[1]}`} size="small">See Recipe</Button>
+          <Button href={`/recipe?index=${item[1]}`} size="small" variant="outlined">See Recipe</Button>
         </CardActions>
       </Card>
     ))}
