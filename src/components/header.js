@@ -1,11 +1,12 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
+import logo from "../images/isolated-monochrome-black.svg"
 
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `black`,
+      background: `white`,
       marginBottom: `1.45rem`,
     }}
   >
@@ -13,23 +14,24 @@ const Header = ({ siteTitle }) => (
       style={{
         margin: `0 auto`,
         textAlign: `center`,
-         // maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
+        maxWidth: 960,
+        paddingTop: `1rem`,
+        paddingBottom: `0`
       }}
     >
       <h1 style={{ margin: 0 }}>
         <Link
-          to="/"
+          to="/categories"
           style={{
             color: `white`,
             textDecoration: `none`,
           }}
         >
-          {siteTitle}
+          <img src={logo} height="70vh" className="header-logo"/>
         </Link>
       </h1>
     </div>
-  </header>
+  </header> 
 )
 
 Header.propTypes = {

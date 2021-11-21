@@ -88,7 +88,7 @@ export default function RecipePage() {
                         </Paper>
                     </div>
                     <br />
-                    <ol>{newLineText(recipeData.strInstructions)}</ol>
+                    <ul>{newLineText(recipeData.strInstructions)}</ul>
                 </div>
             
             )
