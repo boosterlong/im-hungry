@@ -30,7 +30,7 @@ export default function RecipePage() {
 
     function newLineText(props) {
         const newText = props.split('\n').map(str => {
-            if (str.length > 1) {
+            if (str.length > 3) {
             return <li>{str}</li>
             }
         })

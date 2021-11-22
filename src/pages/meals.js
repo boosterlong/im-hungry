@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 
 import * as qs from 'query-string';
 
+import arrow from '../images/up-arrow.svg'
+
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
@@ -53,30 +55,31 @@ export default function MealsPage() {
 
   return(
   <Layout>
-    <Seo title="Page two" />
+    <Seo title="Recipe List" />
     <div class="main-list">
     {listOutput.map(item => (
-      <Card className="recipe-card" sx={{ margin: 0.5 }}>
-        <CardMedia
-          component="img"
-          height="140"
-          image={item[2]}
-          alt={item[0]}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h6">
-            <p class="capitalize">
-              {item[0]}
-            </p>
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button href={`/recipe?index=${item[1]}`} size="small" variant="outlined">See Recipe</Button>
-        </CardActions>
-      </Card>
+      <a className="no-decoration" href={`/recipe?index=${item[1]}`}>
+        <Card className="recipe-card" sx={{ margin: 0.5 }}>
+          <CardMedia
+            component="img"
+            height="140"
+            image={item[2]}
+            alt={item[0]}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h6">
+              <p class="capitalize">
+                {item[0]}
+              </p>
+            </Typography>
+          </CardContent>
+        </Card>
+      </a>
     ))}
     </div>
-    <Link to="/">Go back to the homepage</Link>
+    <Link className="mobile-only to-top" to="#">
+      <img src={arrow}></img>
+    </Link>
   </Layout>
     )
 }

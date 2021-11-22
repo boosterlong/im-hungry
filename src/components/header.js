@@ -1,13 +1,16 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
-import logo from "../images/isolated-monochrome-black.svg"
+import logo from "../images/isolated-monochrome-white.svg"
 
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `white`,
-      marginBottom: `1.45rem`,
+      background: `#54553C`,
+      marginBottom: `1rem`,
+      position: `sticky`,
+      top: `0`,
+      height: `10vh`
     }}
   >
     <div
@@ -39,7 +42,7 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  siteTitle: ``,
+  siteTitle: `imhungry.app`,
 }
 
 export default Header
