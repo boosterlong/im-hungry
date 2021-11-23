@@ -16,7 +16,7 @@ import Seo from "../components/seo"
 
 var loaded = true
 
-//This is to stop the server side rendering from trying to populate the meal list and erroring
+//This is to stop the server side rendering from trying to populate the meal list from the query string and erroring
 const isBrowser = typeof window !== "undefined"
 if (isBrowser) {
     loaded = false
@@ -38,6 +38,7 @@ export default function MealsPage() {
           //Fetch data from API
           const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${parsed.category}`);
           const items = await response.json();
+          //Loop through results and push to an array
           for (let i = 0; i < items.meals.length; i++) {
             mealList.push([items.meals[i].strMeal, items.meals[i].idMeal, items.meals[i].strMealThumb])
           }
