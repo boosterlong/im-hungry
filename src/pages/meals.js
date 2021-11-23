@@ -53,6 +53,8 @@ export default function MealsPage() {
 
   getMealList()
 
+  //I think I'll make my own card component and replace this later
+
   return(
   <Layout>
     <Seo title="Recipe List" />

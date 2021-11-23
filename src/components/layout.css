@@ -67,6 +67,31 @@ template {
   color: #9BD92B
 }
 
+.darkback {
+  background-color: #54553C;
+}
+
+.centered {
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  text-align: center;
+}
+
+
+.white {
+  color: white;
+}
+
+.recipe-block {
+  display:inline-flex,
+}
+
+.socials-list {
+  display:flex;
+  justify-content: space-evenly;
+}
+
 .splash-arrow {
   width: 200px;
   color: white;
@@ -105,6 +130,7 @@ img.hero-splash {
   justify-content: space-evenly;
 }
 
+
 .capitalize {
   text-transform: capitalize;
 }
@@ -112,7 +138,8 @@ img.hero-splash {
 a.source {
   font-size: smaller;
   text-decoration: none;
-  color: rgb(73, 73, 73);
+  color: #9BD92B;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .no-decoration, a:link, a:visited {
@@ -126,6 +153,15 @@ a.source {
 .recipe-card {
   border: 1px solid #9cd92b8e;
   width: 20vw;
+}
+
+.recipe-table {
+  font-family: Arial, Helvetica, sans-serif,
+
+}
+
+.ingredient-list {
+  max-width: 300px;
 }
 
 .ingredient {
@@ -709,6 +745,9 @@ pre tt:after {
 
   img.hero-splash {
     width: 90%;
+  }
+  .ingredient-list {
+    max-width: 95vw;
   }
 
 }

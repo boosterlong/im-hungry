@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import { Box } from "@mui/system";
 
 
 
@@ -15,9 +16,9 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import * as qs from 'query-string';
 import { fontSize } from "@mui/system";
+import { List } from "@mui/material";
 
 var loaded = true
-
 
 //This is to stop the server side rendering from trying to populate the meal list and erroring
 
@@ -28,6 +29,8 @@ if (isBrowser) {
 
 export default function RecipePage() {
 
+
+    //Parses the weird line breaks in the DB
     function newLineText(props) {
         const newText = props.split('\n').map(str => {
             if (str.length > 3) {
@@ -54,41 +57,70 @@ export default function RecipePage() {
             //Fetch data from API
             const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${parsed.index}`);
             const items = await response.json();
-            //Makes the data a bit more readable
+            //Makes the data easier to access
             recipeData = items.meals[0]
 
+
+            //Turns the data into Table Cells
             for (let i = 1; i <= 20; i++) {
               const nameKey = 'strIngredient' + i
               const measureKey = 'strMeasure' + i
               const name = recipeData[nameKey]
               if (name && name.length) {
-                ingredients.push(<TableRow hover="true" className="ingredient"><td>{name}</td><td>{recipeData[measureKey]}</td></TableRow>)
+                ingredients.push(
+                <TableRow hover="true" className="ingredient">
+                    <TableCell>
+                        {name}
+                    </TableCell>
+                    <TableCell>
+                        {recipeData[measureKey]}
+                    </TableCell>
+                </TableRow>)
               }
             }
 
+            //Assigned loadedRecipe to the html/react elements to display
             loadedRecipe = (
-                <div>
-                    <h1 className="capitalize">{recipeData.strMeal}</h1>
-                    <a href={recipeData.strSource} className="source">{recipeData.strSource}</a>
-                    <div class="ingredient-list">
-                        <Paper sx={{ maxWidth: '800px'}}>
-                            <TableContainer>
-                                <Table stickyHeader aria-label="sticky table">
-                                    <TableHead>
-                                        <TableRow>
-                                            <th>Ingredient</th>
-                                            <th>Measure</th>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {ingredients}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
-                    </div>
+                <div style={{
+                    margin: `0 auto`,
+                    maxWidth: 960,
+                }}>
+                    <h1 className="capitalize white">{recipeData.strMeal}</h1>
+                    <a href={recipeData.strSource} className="source">Original Recipe</a>
                     <br />
-                    <ul>{newLineText(recipeData.strInstructions)}</ul>
+                    <Box sx={{
+                        display: `inline-flex`,
+                        flexWrap: `wrap`,
+                    }}
+                        >
+                        <TableContainer style={{paddingLeft: `1rem`, paddingRight: `1rem`}} component={Paper}>
+                            <Table sx="small" aria-label="ingredient table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell align="left">
+                                            Ingredient
+                                        </TableCell>
+                                        <TableCell align="left">
+                                            Measure
+                                        </TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {ingredients}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                        
+                        <Paper variant="outlined" style={{
+                            marginTop: `1rem`,
+                        }}>
+                            <List>
+                                <ul className="instructions">
+                                    {newLineText(recipeData.strInstructions)}
+                                </ul>
+                            </List>
+                        </Paper>
+                    </Box>
                 </div>
             
             )
@@ -103,7 +135,7 @@ export default function RecipePage() {
 
   return(
     <Layout>
-        <Seo title="Page two" />
+        <Seo title="Recipe" />
         {recipe}
     </Layout>
     )

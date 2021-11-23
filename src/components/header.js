@@ -10,7 +10,9 @@ const Header = ({ siteTitle }) => (
       marginBottom: `1rem`,
       position: `sticky`,
       top: `0`,
-      height: `10vh`
+      height: `10vh`,
+      borderBottom: `1px solid #9BD92B`,
+      boxShadow: `0px 5px 5px`
     }}
   >
     <div
@@ -19,7 +21,7 @@ const Header = ({ siteTitle }) => (
         textAlign: `center`,
         maxWidth: 960,
         paddingTop: `1rem`,
-        paddingBottom: `0`
+        paddingBottom: `0`,
       }}
     >
       <h1 style={{ margin: 0 }}>
